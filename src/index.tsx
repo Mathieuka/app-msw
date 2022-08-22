@@ -7,6 +7,7 @@ import App from "./App";
 import GroupProvider from "./providers/GroupProvider";
 import React from "react";
 import UserProvider from "./providers/UserProvider";
+;
 
 createThemeVars([ShareGateTheme]);
 

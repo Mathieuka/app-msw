@@ -1,4 +1,4 @@
-import { Button, Div, Divider, Flex, HtmlButton, Paragraph, SvgImage, Text,SortIcon } from "@sharegate/orbit-ui";
+import { Button, Div, Divider, Flex, HtmlButton, Paragraph, SvgImage, Text, SortIcon } from "@sharegate/orbit-ui";
 import { GROUP_COLUMN_TITLE, GROUP_PROP_NAME } from "../providers/GroupProvider";
 import { ReactComponent as InactiveLogo } from "../assets/Inactive.svg";
 import { ReactComponent as OrphanedLogo } from "../assets/Orphaned.svg";
