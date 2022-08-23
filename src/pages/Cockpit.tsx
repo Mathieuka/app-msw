@@ -1,17 +1,19 @@
 import { Button, Div, Divider, Flex, HtmlButton, Paragraph, SvgImage, Text, SortIcon } from "@sharegate/orbit-ui";
+
 import { GROUP_COLUMN_TITLE, GROUP_PROP_NAME } from "../providers/GroupProvider";
-import { ReactComponent as InactiveLogo } from "../assets/Inactive.svg";
-import { ReactComponent as OrphanedLogo } from "../assets/Orphaned.svg";
-import { ReactComponent as ShareGateLogo } from "../assets/logo_apricot.svg";
-import { ReactComponent as SharingLogo } from "../assets/Sharing.svg";
-import { ReactComponent as UncategorizedLogo } from "../assets/Uncategorized.svg";
+// import { ReactComponent as InactiveLogo } from "../assets/Inactive.svg";
+// import { ReactComponent as OrphanedLogo } from "../assets/Orphaned.svg";
+// import { ReactComponent as ShareGateLogo } from "../assets/logo_apricot.svg";
+// import { ReactComponent as SharingLogo } from "../assets/Sharing.svg";
+// import { ReactComponent as UncategorizedLogo } from "../assets/Uncategorized.svg";
 import { capitalizeFirstLetter } from "../helpers/utils";
 import { tGroup } from "../providers/GroupProvider";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import useGroup from "../hooks/useGroup";
 import useUser from "../hooks/useUser";
 
+console.log('=>>>>>>', Div);
 const groupsColumnsTitle: { title: GROUP_COLUMN_TITLE; propName: GROUP_PROP_NAME }[] = [
     { title: GROUP_COLUMN_TITLE.TEAMS, propName: GROUP_PROP_NAME.NAME },
     { title: GROUP_COLUMN_TITLE.PURPOSE_AND_SENSITIVITY, propName: GROUP_PROP_NAME.TAGS },
@@ -26,10 +28,10 @@ enum GroupFilters {
 }
 
 const filterCardsConfig = [
-    { logo: UncategorizedLogo, filter: GroupFilters.IS_UNCATEGORIZED, title: "Uncategorized" },
-    { logo: OrphanedLogo, filter: GroupFilters.IS_ORPHANED, title: "Orphaned" },
-    { logo: InactiveLogo, filter: GroupFilters.IS_INACTIVE, title: "Inactive" },
-    { logo: SharingLogo, filter: GroupFilters.HAS_EXTERNAL_SHARING, title: "Sharing" }];
+    { logo: '', filter: GroupFilters.IS_UNCATEGORIZED, title: "Uncategorized" },
+    { logo: '', filter: GroupFilters.IS_ORPHANED, title: "Orphaned" },
+    { logo: '', filter: GroupFilters.IS_INACTIVE, title: "Inactive" },
+    { logo: '', filter: GroupFilters.HAS_EXTERNAL_SHARING, title: "Sharing" }];
 
 
 
@@ -43,7 +45,7 @@ const FilterCards = ({ groups, handleSetGroupFiltersName }: { groups: tGroup[]; 
                             <Text>{groups.filter(group => group[filter]).length}</Text>
                             <Text>{title}</Text>
                         </Flex>
-                        <SvgImage src={logo} aria-label="" margin={2}/>
+                        {/*<SvgImage src={logo} aria-label="" margin={2}/>*/}
                     </HtmlButton>
                 </Div>
                 <Text position="absolute" marginLeft="15px" marginTop="-20px" onClick={() => handleSetGroupFiltersName(undefined)}>Remove filter</Text>
@@ -56,26 +58,29 @@ const Cockpit = () => {
     const [groupFiltersName, setGroupFiltersName] = useState<GroupFilters>();
     const { user: { name, clientId }, handleLogout } = useUser();
     const { groups: allGroups, sortGroupBy, getPosts } = useGroup();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const groups = allGroups.filter(group => groupFiltersName ? group[groupFiltersName] : group);
 
     useEffect(() => {
-        if (clientId) {
-            (async function() {
-                await getPosts(clientId);
-            })();
-        } else {
-            navigate("/");
-        }
+        (async function() {
+            await getPosts("1234");
+        })();
+        // if (clientId) {
+        //     (async function() {
+        //         await getPosts(clientId);
+        //     })();
+        // } else {
+        //     navigate("/");
+        // }
     }, []);
 
     const handleSetGroupFiltersName = (filter: GroupFilters | undefined) => setGroupFiltersName(filter);
 
     return (
-        <Div >
+        <Div>
             <Div display="grid" gridTemplateColumns="1fr 140px" paddingX="56px" marginTop="20px">
-                <ShareGateLogo/>
+                {/*<ShareGateLogo/>*/}
                 <Div display="flex" gap="25px">
                     <Div display="flex" alignItems="center">
                         <Text>Admin</Text>
